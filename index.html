@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piedra Papel o Tijeras</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #1f1c2c, #928dab);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 1em;
+            border: none;
+            border-radius: 8px;
+            outline: none;
+            width: 200px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            background-color: #ff6b81;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff4757;
+        }
+
+        #mensaje {
+            margin-top: 20px;
+            font-size: 1.2em;
+            min-height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JUEGA AL PIEDRA PAPEL O TIJERAS</h1>
+    <input type="text" id="ppt" placeholder="piedra, papel o tijeras">
+    <button onclick="jugar()">Jugar</button>
+    <div id="mensaje"></div>
+
+    <script>
+        function jugar() {
+            const mensaje = document.getElementById("mensaje");
+            const jugada = document.getElementById("ppt").value.toLowerCase();
+            const jugadas = ["piedra", "papel", "tijeras"];
+
+            if (!jugadas.includes(jugada)) {
+                mensaje.textContent = "Por favor, escribe piedra, papel o tijeras.";
+                return;
+            }
+
+            const jugadaPC = jugadas[Math.floor(Math.random() * 3)];
+
+            if (jugada === jugadaPC) {
+                mensaje.textContent = "Empate, vuelve a intentarlo.";
+            } else if (
+                (jugada === "piedra" && jugadaPC === "tijeras") ||
+                (jugada === "papel" && jugadaPC === "piedra") ||
+                (jugada === "tijeras" && jugadaPC === "papel")
+            ) {
+                mensaje.textContent = "Has ganado";
+            } else {
+                mensaje.textContent = "Has perdido, me daría vergüenza.";
+            }
+        }
+    </script>
+</body>
+</html>

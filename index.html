@@ -13,32 +13,39 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
         }
 
         h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            font-size: 6vw;
+            margin-bottom: 5vh;
+            text-align: center;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
         }
 
         input[type="text"] {
-            padding: 10px;
-            font-size: 1em;
+            padding: 12px;
+            font-size: 4.5vw;
             border: none;
             border-radius: 8px;
             outline: none;
-            width: 200px;
-            margin-bottom: 15px;
+            width: 80%;
+            max-width: 300px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
         }
 
         button {
             background-color: #ff6b81;
             color: white;
             border: none;
-            padding: 10px 20px;
-            font-size: 1em;
+            padding: 12px 24px;
+            font-size: 4.5vw;
+            max-width: 200px;
+            width: 60%;
             border-radius: 8px;
             cursor: pointer;
             transition: background-color 0.3s ease;
@@ -49,9 +56,26 @@
         }
 
         #mensaje {
-            margin-top: 20px;
-            font-size: 1.2em;
+            margin-top: 25px;
+            font-size: 4.5vw;
+            text-align: center;
             min-height: 40px;
+        }
+
+        @media (min-width: 600px) {
+            h1 {
+                font-size: 2.5em;
+            }
+
+            input[type="text"],
+            button,
+            #mensaje {
+                font-size: 1em;
+            }
+
+            button {
+                width: auto;
+            }
         }
     </style>
 </head>
@@ -75,17 +99,18 @@
             const jugadaPC = jugadas[Math.floor(Math.random() * 3)];
 
             if (jugada === jugadaPC) {
-                mensaje.textContent = "Empate, vuelve a intentarlo.";
+                mensaje.textContent = `Empate. Yo también elegí ${jugadaPC}.`;
             } else if (
                 (jugada === "piedra" && jugadaPC === "tijeras") ||
                 (jugada === "papel" && jugadaPC === "piedra") ||
                 (jugada === "tijeras" && jugadaPC === "papel")
             ) {
-                mensaje.textContent = "Has ganado";
+                mensaje.textContent = `Has ganado. Yo elegí ${jugadaPC}.`;
             } else {
-                mensaje.textContent = "Has perdido, me daría vergüenza.";
+                mensaje.textContent = `Has perdido, yo elegí ${jugadaPC}.`;
             }
         }
     </script>
 </body>
 </html>
+
